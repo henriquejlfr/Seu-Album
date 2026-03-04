@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Álbum</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #4B2E83;
+            color: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        /* CAPA */
+        .capa {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(180deg, #4B2E83 60%, #3A2165 100%);
+            padding: 20px;
+        }
+
+        .capa h1 {
+            font-size: 36px;
+            color: #FFD700;
+            max-width: 800px;
+            line-height: 1.4;
+        }
+
+        .capa p {
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+
+        /* BLOCO FOTO */
+        .foto {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease;
+        }
+
+        .foto.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Alternar lado automaticamente */
+        .foto:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .foto img {
+            width: 50%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .legenda {
+            width: 50%;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #FFD700;
+            color: #4B2E83;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .foto {
+                flex-direction: column !important;
+                text-align: center;
+            }
+
+            .foto img,
+            .legenda {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="capa">
+        <h1>Aquele que criei um album nosso ! </h1>
+        <p>Sei que você gosta de relembrar momentos importantes então fiz isso pra você ! espero que goste ❤️ </p>
+    </section>
+
+    <div class="container">
+
+        <div class="foto">
+            <img src="foto1.jpeg" alt="foto1">
+            <div class="legenda">
+                Aquele que fomos para guara.
+            </div>
+        </div>
+
+        <div class="foto">
+            <img src="foto2.jpeg" alt="foto2">
+            <div class="legenda">
+                Aquele que tentamos tirar uma selfie normal. (você saiu linda)
+            </div>
+        </div>
+
+        <div class="foto">
+            <img src="foto4.jpeg" alt="foto4">
+            <div class="legenda">
+                Aquele que a gente só ia tirar uma foto… e saiu com cara de casal de sitcom dos anos 90.
+            </div>
+        </div>
+
+        <div class="foto">
+            <img src="foto5.jpeg" alt="foto5">
+            <div class="legenda">
+                Aquele que Pegamos o Cagão (luke)
+            </div>
+        </div>
+
+        <div class="foto">
+            <img src="foto6.jpeg" alt="foto6">
+            <div class="legenda">
+                Aquele Fomos no central perk
+            </div>
+        </div>
+
+        <div class="foto">
+            <img src="foto7.jpeg" alt="foto7">
+            <div class="legenda">
+                Aquele que cantamos I'll be there for youuuu
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        Feito com carinho para que você possa ver e lembrar de alguns dos nossos momentos 💜
+    </footer>
+
+    <script>
+        const fotos = document.querySelectorAll('.foto');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        fotos.forEach(foto => {
+            observer.observe(foto);
+        });
+    </script>
+
+</body>
+</html>
