@@ -19,6 +19,32 @@ color:white;
 scroll-behavior:smooth;
 }
 
+/* MENU */
+
+.menu{
+position:sticky;
+top:0;
+background:#2d174f;
+display:flex;
+justify-content:center;
+gap:30px;
+padding:15px;
+z-index:1000;
+}
+
+.menu button{
+background:none;
+border:none;
+color:white;
+font-size:16px;
+cursor:pointer;
+font-weight:600;
+}
+
+.menu button:hover{
+color:#FFD700;
+}
+
 /* CAPA */
 
 .capa{
@@ -84,11 +110,12 @@ transform:translateY(0);
 .foto img{
 width:100%;
 border-radius:4px;
-transition:transform .4s;
+transition:transform .3s;
+cursor:pointer;
 }
 
 .foto img:active{
-transform:scale(1.05);
+transform:scale(1.04);
 }
 
 .legenda{
@@ -118,11 +145,39 @@ color:#FFD700;
 font-size:26px;
 }
 
-.final p{
-max-width:500px;
-margin:auto;
-line-height:1.6;
-margin-top:10px;
+/* GALERIA GRID */
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.grid img{
+width:100%;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* FULLSCREEN FOTO */
+
+.viewer{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+
+.viewer img{
+max-width:95%;
+max-height:95%;
+border-radius:10px;
 }
 
 /* FOOTER */
@@ -132,6 +187,7 @@ background:#FFD700;
 color:#4B2E83;
 text-align:center;
 padding:20px;
+margin-top:60px;
 }
 
 </style>
@@ -139,9 +195,14 @@ padding:20px;
 
 <body>
 
+<div class="menu">
+<button onclick="mostrarAba('album')">Nosso Álbum</button>
+<button onclick="mostrarAba('familia')">Família e Amigos</button>
+</div>
+
 <section class="capa">
 
-<h1>Aquele que criei Nosso album</h1>
+<h1>The one where you became my favorite person</h1>
 
 <p>🔴 🟡 🔵 🔴 🟡 🔵</p>
 
@@ -152,67 +213,80 @@ então fiz isso pra você. Espero que goste ❤️
 
 </section>
 
-<div class="container">
+<!-- NOSSO ALBUM -->
+
+<div id="album" class="container">
 
 <div class="foto">
-<img src="Foto1.jpeg">
-<div class="legenda">
-Aquele que fomos pra Guará.
-</div>
+<img src="foto1.jpeg">
+<div class="legenda">Aquele que fomos pra Guará.</div>
 </div>
 
 <div class="separador">❤️</div>
 
 <div class="foto">
 <img src="foto2.jpeg">
-<div class="legenda">
-Aquele que tentamos tirar uma selfie normal 😂 (você saiu linda).
-</div>
+<div class="legenda">Aquele que tentamos tirar uma selfie normal 😂</div>
 </div>
 
 <div class="separador">❤️</div>
 
 <div class="foto">
 <img src="foto4.jpeg">
-<div class="legenda">
-Aquele que a gente só ia tirar uma foto… e saiu com cara de casal de sitcom dos anos 90.
-</div>
+<div class="legenda">Aquele que parecia casal de sitcom.</div>
 </div>
 
 <div class="separador">❤️</div>
 
 <div class="foto">
 <img src="foto5.jpeg">
-<div class="legenda">
-Aquele que pegamos o cagão (Luke).
-</div>
+<div class="legenda">Aquele que pegamos o Luke.</div>
 </div>
 
 <div class="separador">❤️</div>
 
 <div class="foto">
 <img src="foto6.jpeg">
-<div class="legenda">
-Aquele que fomos no Central Perk.
-</div>
+<div class="legenda">Aquele que fomos no Central Perk.</div>
 </div>
 
 <div class="separador">❤️</div>
 
 <div class="foto">
 <img src="foto7.jpeg">
-<div class="legenda">
-Aquele que cantamos "I'll be there for youuuu".
-</div>
+<div class="legenda">Aquele que cantamos I'll be there for you.</div>
 </div>
 
 <div class="separador">❤️</div>
 
 <div class="foto">
 <img src="foto8.jpeg">
-<div class="legenda">
-Aquela que foi uma noite incrível pré perrengue 😂.
+<div class="legenda">Aquela noite pré perrengue 😂</div>
 </div>
+
+</div>
+
+<!-- FAMILIA E AMIGOS -->
+
+<div id="familia" class="container" style="display:none">
+
+<h2 style="text-align:center;color:#FFD700;margin-bottom:40px;">
+Família e Amigos
+</h2>
+
+<div class="grid">
+
+<img src="familia1.jpeg">
+<img src="familia2.jpeg">
+<img src="familia3.jpeg">
+<img src="familia4.jpeg">
+<img src="familia5.jpeg">
+<img src="familia6.jpeg">
+<img src="familia7.jpeg">
+<img src="familia8.jpeg">
+<img src="familia9.jpeg">
+<img src="familia10.jpeg">
+
 </div>
 
 </div>
@@ -222,43 +296,75 @@ Aquela que foi uma noite incrível pré perrengue 😂.
 <h2>E ainda estamos escrevendo novos episódios...</h2>
 
 <p>
-Esse é só um pequeno pedaço da nossa história.  
-Ainda temos muitas fotos, viagens, risadas e momentos  
+Esse é só um pequeno pedaço da nossa história.
+Ainda temos muitas fotos, viagens, risadas e momentos
 para adicionar aqui.
 </p>
 
 </section>
 
 <footer>
-
-Feito com carinho para que você possa revisitar nossos momentos 💜
-
+Feito com carinho para revisitar nossos momentos 💜
 </footer>
 
+<!-- VISUALIZADOR -->
+
+<div class="viewer" id="viewer">
+<img id="viewerImg">
+</div>
+
 <script>
+
+/* animação scroll */
 
 const fotos=document.querySelectorAll('.foto');
 
 const observer=new IntersectionObserver((entries)=>{
 
 entries.forEach(entry=>{
-
 if(entry.isIntersecting){
-
 entry.target.classList.add('visible');
-
 }
-
 });
 
 },{threshold:0.2});
 
 fotos.forEach(foto=>observer.observe(foto));
 
+
+/* troca de abas */
+
+function mostrarAba(aba){
+
+document.getElementById("album").style.display="none";
+document.getElementById("familia").style.display="none";
+
+document.getElementById(aba).style.display="block";
+
+window.scrollTo({top:0,behavior:"smooth"});
+
+}
+
+
+/* fullscreen */
+
+const viewer=document.getElementById("viewer");
+const viewerImg=document.getElementById("viewerImg");
+
+document.querySelectorAll("img").forEach(img=>{
+
+img.addEventListener("click",()=>{
+viewer.style.display="flex";
+viewerImg.src=img.src;
+});
+
+});
+
+viewer.addEventListener("click",()=>{
+viewer.style.display="none";
+});
+
 </script>
 
 </body>
 </html>
-
-
-
